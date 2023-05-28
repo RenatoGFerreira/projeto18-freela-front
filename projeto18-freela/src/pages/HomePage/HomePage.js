@@ -1,38 +1,57 @@
-import ScreenWithBars from "../../components/ScreenWithBars/ScreenWithBars.js"
-import InfoCard from "../../components/InfoCard/InfoCard.js"
-import { Cards } from "./Styled.js"
-import { StyledForm } from "../../components/StyledForm.js"
-import { StyledLink } from "../../components/StyledLink.js"
+import ScreenWithBars from "../../components/ScreenWithBars/ScreenWithBars.js";
+import InfoCard from "../../components/InfoCard/InfoCard.js";
+import { Cards, Lista } from "./Styled.js";
+import { StyledLink } from "../../components/StyledLink.js";
+import apiViagens from "../../services/apiVIagens";
+import { useState } from "react";
+import { useEffect } from "react";
+import { ThreeDots } from "react-loader-spinner";
+import { Link } from "react-router-dom";
+import TravelCard from "../../components/TravelCard/TravelCard.js";
 
-export default function HomePage(){
-    return(
-        <ScreenWithBars>
-                <StyledForm>
-                    <select name="experiências">
-                        <option value="">-- Selecione sua próxima experiência--</option>
-                        <option value="">Uma vista acima das nuvens na Serra do Caparaó</option>
-                        <option value="">10 dias de Estrada Real</option>
-                        <option value="">Rotas do Ouro de Ouro Preto e arredores</option>
-                        <option value="">Climas Frios e intensos de Monte Verde</option>
-                        <option value="">Navegar pelos Canions de Capitólio</option>
-                        <option value="">Terras Mágicas de Sao Thomé das Letras</option>
-                        <option value="">Mometos Mágicos na Serra do Caraça</option>
-                        <option value="">Circuito das Aguas de Minas Gerais - Caxambú</option>
-                        <option value="">Maior Museu aberto do Mundo em Inhotim</option>
-                        <option value="">Rotas do Queijo e do Doce da Serra da Canastra</option>
-                        <option value="">Viagem de Trem MINAS-ESPIRITO SANTO</option>
-                    </select>
-                    <button type="submit">Conhecer a Experiência</button>
-                </StyledForm>
+export default function HomePage() {
+  const [viagens, setViagens] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
-            <Cards>
-                <InfoCard text={"De onde para aonde."}/>
-                <InfoCard text={"Agende sua passagem com data e hora"}/>
-                <InfoCard text={"Personalize a sua experiência"}/>
-                <InfoCard text={"Viva como nunca!"}/>
-            </Cards>
+  useEffect(getViagens, []);
 
-            <StyledLink to="/CheckInPage">Montar minha próxima Experiência</StyledLink>
-        </ScreenWithBars>
-    )
+  function getViagens() {
+    apiViagens
+      .getViagens()
+      .then((res) => {
+        setViagens(res.data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        alert(err.response.data.message);
+      });
+  }
+
+  return (
+    <ScreenWithBars>
+      <Cards>
+        <InfoCard text={"Escolha sua próxima experiência."} />
+        <InfoCard text={"Veja os pacotes disponivels com os locais de partida e data."} />
+        <InfoCard text={"Dê um upgrade na a sua experiência"} />
+        <InfoCard text={"Viva uma experiência como nunca!"} />
+      </Cards>
+      <Lista>
+        
+        {isLoading ? (
+          <ThreeDots width={80} height={80} color="#126ba5" />
+        ) : (
+          viagens.map((viagem) => (
+            <Link to={`/CheckInPage/${viagem.id}`} key={viagem.id}>
+              <TravelCard name={viagem.experience} />
+            </Link>
+          ))
+        )}
+      </Lista>
+
+      <StyledLink to="/CheckInPage">
+        Verificar todas as cidades.
+      </StyledLink>
+    </ScreenWithBars>
+  );
 }
