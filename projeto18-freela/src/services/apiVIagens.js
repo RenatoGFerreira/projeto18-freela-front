@@ -11,11 +11,15 @@ function getViagens(){
 
 function getInfoViagens(id){
     const promise = axios.get(`${BASE_URL}/checkinpage/${id}`)
-    console.log(id)
+    return promise
+}
+
+function getInfoTicket(id){
+    const promise = axios.get(`${BASE_URL}/confirmpage/${id}`)
     return promise
 }
 
 
 
-const apiViagens = { getViagens, getInfoViagens}
+const apiViagens = { getViagens, getInfoViagens, getInfoTicket}
 export default apiViagens

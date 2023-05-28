@@ -1,7 +1,6 @@
 import ScreenWithBars from "../../components/ScreenWithBars/ScreenWithBars.js";
 import InfoCard from "../../components/InfoCard/InfoCard.js";
-import { Cards, Lista } from "./Styled.js";
-import { StyledLink } from "../../components/StyledLink.js";
+import { Cards, Lista, PhraseEffect } from "./Styled.js";
 import apiViagens from "../../services/apiVIagens";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -30,6 +29,10 @@ export default function HomePage() {
 
   return (
     <ScreenWithBars>
+      <PhraseEffect>
+        <h1>Nunca <span>será</span> apenas <br/>uma viagem,</h1>
+        <h1><span>Sempre</span> será <span>uma</span> <br/> grande <span>experiência</span></h1>
+      </PhraseEffect>
       <Cards>
         <InfoCard text={"Escolha sua próxima experiência."} />
         <InfoCard text={"Veja os pacotes disponivels com os locais de partida e data."} />
@@ -37,7 +40,6 @@ export default function HomePage() {
         <InfoCard text={"Viva uma experiência como nunca!"} />
       </Cards>
       <Lista>
-        
         {isLoading ? (
           <ThreeDots width={80} height={80} color="#126ba5" />
         ) : (
@@ -48,10 +50,6 @@ export default function HomePage() {
           ))
         )}
       </Lista>
-
-      <StyledLink to="/CheckInPage">
-        Verificar todas as cidades.
-      </StyledLink>
     </ScreenWithBars>
   );
 }

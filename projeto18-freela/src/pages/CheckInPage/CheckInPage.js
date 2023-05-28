@@ -40,7 +40,7 @@ export default function CheckInPage(){
                 </Cards>
                 <Cards>
                     {experience.travelDates.map((item) => (
-                    <Link to={`/CheckInPage/${item.id}`} key={item.id}>
+                    <Link to={`/ConfirmPage/${item.id}`} key={item.id}>
                         <CheckCard/>
                     </Link>
                     ))}

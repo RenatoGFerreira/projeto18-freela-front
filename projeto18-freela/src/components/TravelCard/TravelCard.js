@@ -1,9 +1,11 @@
-import { CardContainer } from "./Styled"
+import { CardContainer, CardFigure, TextContainer } from "./Styled";
 
-export default function TravelCard({name}){
-    return(
-        <CardContainer>
-            <h1>{name}</h1>
-        </CardContainer>
-    )
+export default function TravelCard({ name }) {
+  return (
+    <CardContainer>
+      <CardFigure>
+        <TextContainer>{name}</TextContainer>
+      </CardFigure>
+    </CardContainer>
+  );
 }
