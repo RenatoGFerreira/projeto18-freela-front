@@ -1,6 +1,6 @@
 import ScreenWithBars from "../../components/ScreenWithBars/ScreenWithBars"
 import CheckCard from "../../components/CheckCard/CheckCard.js"
-import { Cards } from "./Styled"
+import { ScreenContainer, TextContainer, Cards } from "./Styled"
 import { useState, useEffect } from "react"
 import { Link, useParams } from "react-router-dom"
 import apiViagens from "../../services/apiVIagens.js";
@@ -28,26 +28,31 @@ export default function CheckInPage(){
     
     return(
         <ScreenWithBars>
-        <Cards>
+        <ScreenContainer>
             {isLoading? (
              <ThreeDots width={80} height={80} color="#126ba5" />
             ) : (
-                <>
+                <TextContainer>
                 <h1>{experience.experience}</h1>
                 <h2>{experience.name}</h2>
-                <Cards>
-                    {experience.description}
-                </Cards>
+                <p>{experience.description}</p>
+
                 <Cards>
                     {experience.travelDates.map((item) => (
                     <Link to={`/ConfirmPage/${item.id}`} key={item.id}>
-                        <CheckCard/>
+                        <CheckCard 
+                        id={item.id}
+                        date={item.date}
+                        partida={item.local}
+                        preco={item.price}
+
+                        />
                     </Link>
                     ))}
                 </Cards> 
-                </>
+                </TextContainer>
             )}
-        </Cards>
+        </ScreenContainer>
         </ScreenWithBars>
     )
 }

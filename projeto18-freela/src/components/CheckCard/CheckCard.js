@@ -1,9 +1,12 @@
 import { Square } from "./Styled.js"
 
-export default function CheckCard(){
+export default function CheckCard({id, date, partida, preco}){
     return(
         <Square>
-            Info
+            id do card={id}
+            data={date}
+            partida={partida}
+            preco={preco}
         </Square>
     )
 }

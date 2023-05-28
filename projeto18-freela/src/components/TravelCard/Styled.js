@@ -28,7 +28,7 @@ export const TextContainer = styled.div`
     right: 5%;
     transform: translateY(-50%);
     transition: transform .5s;
-    font: 700 1.2rem monospace;
+    font: 600 1.2rem monospace;
     text-shadow: -1px -1px 0 #000,  
         1px -1px 0 #000,
         -1px 1px 0 #000,
