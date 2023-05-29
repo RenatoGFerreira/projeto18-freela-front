@@ -30,10 +30,10 @@ export const TextContainer = styled.div`
 
     }
 `
-
 export const Cards = styled.div`
-    border: 1px solid blue;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 15px;
+    border-radius: 10px;
     width: 80%;
     display: flex;
     flex-direction: row;
@@ -41,4 +41,5 @@ export const Cards = styled.div`
     align-self: center;
     justify-content: flex-start;
     flex-wrap: wrap;
+    z-index: 5;
 `

@@ -47,6 +47,8 @@ export const PhotoContainer = styled.div`
     z-index: 1;
     img{
         width: 100%;
+        object-fit: cover;
+        height: 700px;
         opacity: 0.6;   
     }
 `

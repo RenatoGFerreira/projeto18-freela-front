@@ -45,7 +45,6 @@ export default function CheckInPage(){
                         date={item.date}
                         partida={item.local}
                         preco={item.price}
-
                         />
                     </Link>
                     ))}

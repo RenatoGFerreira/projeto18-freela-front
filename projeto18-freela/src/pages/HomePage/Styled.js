@@ -38,5 +38,7 @@ export const PhraseEffect = styled.div`
     }
     span{
         color: #fff;
+        box-shadow: 1px black;
+        -webkit-text-stroke: 1px #000;
     }
 `
